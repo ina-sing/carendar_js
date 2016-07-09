@@ -1,0 +1,29 @@
+- name: install nginx
+  yum: name=nginx state=present
+  notify: nginx起動及び有効化
+  tags: nginx
+
+- name: デフォルトconfファイルの削除
+  file: state=absent dest=/etc/nginx/conf.d/{{ item }}.conf
+  with_items:
+    - default
+    - ssl
+    - virtual
+  notify: nginxのリロード
+  tags: nginx
+
+- name: nginx.confファイルの配置
+  template: src=../templates/nginx.conf.j2 dest=/etc/nginx/nginx.conf
+  notify: nginxのリロード
+  tags: nginx
+
+- name: 個別confファイルの配置
+  template: src=../templates/{{ item }}.conf.j2 dest=/etc/nginx/conf.d/{{ item }}.conf
+  with_items:
+    - calendar_ec2
+  notify: nginxのリロード
+  tags: nginx
+
+- name: Document Rootの作成 {{ inventory_hostname }}
+  file: path={{ DOCUMENT_ROOT }} state=directory owner=nginx group=adm mode=0755
+  tags: nginx

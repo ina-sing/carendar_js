@@ -1,0 +1,5 @@
+- name: install util
+  yum: name={{ item }} state=present
+  with_items:
+    - git
+  tags: util

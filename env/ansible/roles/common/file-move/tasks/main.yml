@@ -1,0 +1,15 @@
+- name: Document Rootにディレクトリをコピー(代替デプロイ)
+  copy: src=../../app/{{ item }} dest={{ DOCUMENT_ROOT }} owner=nginx group=adm mode=0755
+  with_items:
+    - js
+    - css
+  tags: deploy
+
+- name: Document Rootにファイルをコピー(代替デプロイ)
+  copy: src=../../app/{{ item }} dest={{ DOCUMENT_ROOT }} owner=nginx group=adm mode=0644
+  with_items:
+    - js/calendar.js
+    - js/calendar_class.js
+    - css/calendar.css
+    - index.html
+  tags: deploy

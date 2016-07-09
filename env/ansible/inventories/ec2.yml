@@ -1,0 +1,7 @@
+[ec2-web]
+#ec2-52-196-175-139.ap-northeast-1.compute.amazonaws.com
+52.196.175.139
+
+[ec2-web:vars]
+ansible_ssh_private_key_file=~/.ssh/id_rsa
+ansible_ssh_user=ec2-user

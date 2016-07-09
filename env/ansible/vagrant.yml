@@ -1,0 +1,10 @@
+- hosts:
+    - default
+  become: yes
+  vars:
+    SERVER_NAME: vagrant.calendar.jp
+    DOCUMENT_ROOT: /var/www/html
+  roles:
+    - vagrant/server-settings
+    - common/nginx
+

@@ -1,0 +1,3 @@
+- name: nginxのリロード
+  service: name=nginx state=started enabled=yes
+  tags: nginx

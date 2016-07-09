@@ -1,0 +1,10 @@
+- name: epel install
+  yum: name=epel-release state=latest
+  tags: util
+
+- name: install util
+  yum: name={{ item }} state=present
+  with_items:
+    - libselinux-python
+    - git
+  tags: util
