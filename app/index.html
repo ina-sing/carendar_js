@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ja">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="./css/calendar.css">
+    <script type="text/javascript" src="./js/calendar_class.js"></script>
+    <script type="text/javascript" src="./js/calendar.js"></script>
+    <title>カレンダー</title>
+</head>
+<body>
+<div class="contents">
+    <h3 class="pos-center">カレンダー</h3>
+    <div class="week-display-setting">
+        <fieldset>
+            <legend>表示設定</legend>
+            <label>週の始まり：</label>
+            <select id="start-week-selection" class="form-control" onchange="changeCalendar(this)">
+                <option value="0">日曜</option>
+                <option value="1">月曜</option>
+            </select>
+        </fieldset>
+    </div>
+
+    <div class="move">
+        <button id="prev" class="button" onClick="prevMonth(calendar)">前の月</button>
+        <button id="now" class="button" onClick="backNowMonth()">当月</button>
+        <button id="next" class="button" onClick="nextMonth(calendar)">次の月</button>
+    </div>
+    <table class="calendar-table" cellpadding="0" cellspacing="0">
+        <thead class="calendar-table-head">
+        <tr>
+            <th colspan=7 id="current"></th>
+        </tr>
+        <tr id="week">
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody class="calendar-table-date">
+        <tr id="week1">
+            <td id="td0"></td>
+            <td id="td1"></td>
+            <td id="td2"></td>
+            <td id="td3"></td>
+            <td id="td4"></td>
+            <td id="td5"></td>
+            <td id="td6"></td>
+        </tr>
+        <tr id="week2">
+            <td id="td7"></td>
+            <td id="td8"></td>
+            <td id="td9"></td>
+            <td id="td10"></td>
+            <td id="td11"></td>
+            <td id="td12"></td>
+            <td id="td13"></td>
+        </tr>
+        <tr id="week3">
+            <td id="td14"></td>
+            <td id="td15"></td>
+            <td id="td16"></td>
+            <td id="td17"></td>
+            <td id="td18"></td>
+            <td id="td19"></td>
+            <td id="td20"></td>
+        </tr>
+        <tr id="week4">
+            <td id="td21"></td>
+            <td id="td22"></td>
+            <td id="td23"></td>
+            <td id="td24"></td>
+            <td id="td25"></td>
+            <td id="td26"></td>
+            <td id="td27"></td>
+        </tr>
+        <tr id="week5">
+            <td id="td28"></td>
+            <td id="td29"></td>
+            <td id="td30"></td>
+            <td id="td31"></td>
+            <td id="td32"></td>
+            <td id="td33"></td>
+            <td id="td34"></td>
+        </tr>
+        <tr id="week6">
+            <td id="td35"></td>
+            <td id="td36"></td>
+            <td id="td37"></td>
+            <td id="td38"></td>
+            <td id="td39"></td>
+            <td id="td40"></td>
+            <td id="td41"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

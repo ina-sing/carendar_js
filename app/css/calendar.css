@@ -1,0 +1,78 @@
+table, td, th {
+    border: 0.5px #CC0000 solid;
+}
+a {
+    text-decoration: none;
+}
+
+.contents {
+    min-width: 490px;
+    max-width: 910px;
+}
+
+.week-display-setting {
+    margin: auto;
+    padding: 0 0 10px 0;
+}
+
+.form-control {
+    border-radius: 0;
+    box-shadow: none;
+    border-color: #d2d6de;
+    width: 100px;
+}
+
+.button {
+    background-color: #FA6A8B;
+    border: none;
+    width: 50px;
+    padding: 10px 0;
+
+}
+.button:hover{
+    background-color: #f6ff37;
+}
+.button[disabled]{
+    background-color: #B9B2B8;
+    border: none;
+}
+
+.pos-center {
+    text-align: center;
+}
+
+.move {
+    text-align: center;
+    padding: 0 0 10px 0;
+}
+
+.calendar-table{
+    text-align: center;
+    height: 490px;
+    max-height: 560px;
+    margin: 0 auto 0 auto;
+}
+.calendar-table-head {
+    background-color: #F48686;
+}
+.calendar-table-date tr td {
+    min-width: 70px;
+    max-width: 130px;
+    width: 12%;
+    min-height: 70px;
+    max-height: 130px;
+    height: 12%;
+}
+
+.sunday {
+    background-color: #FAC8C8;
+}
+.saturday {
+    background-color: #CCC8FA;
+}
+.today  {
+    background-color: #4FF578;
+}
+.no-current-month  {
+    background-color: #C0C0C0;
+}
