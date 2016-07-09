@@ -2,10 +2,10 @@
 
 class Calendar {
   constructor(hashDate) {
-    if (hashDate === '') {
+    if (!hashDate) {
       this.currentDate = new Date();
     } else {
-      const dateArr = hashDate.split('/');
+      var dateArr = hashDate.split('/');
       this.currentDate = new Date(dateArr[0], dateArr[1] - 1);
     }
   }
@@ -15,7 +15,7 @@ class Calendar {
   }
 
   getNext() {
-    const date = new Date(
+    var date = new Date(
       this.getCurrentYear(),
       this.getCurrentMonth()
     );
@@ -24,7 +24,7 @@ class Calendar {
   }
 
   getPrev() {
-    const date = new Date(
+    var date = new Date(
       this.getCurrentYear(),
       this.getCurrentMonth()
     );
@@ -43,13 +43,13 @@ class Calendar {
 
 class CalendarUtil {
   static isThisMonth(targetDate) {
-    const today = new Date();
+    var today = new Date();
     return (today.getFullYear() == targetDate.getFullYear()
     && today.getMonth() == targetDate.getMonth());
   }
 
   static isToday(targetDate) {
-    const today = new Date();
+    var today = new Date();
     return (today.getFullYear() == targetDate.getFullYear()
     && today.getMonth() == targetDate.getMonth()
     && today.getDate() == targetDate.getDate());
