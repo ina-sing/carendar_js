@@ -1,6 +1,6 @@
 'use strict'
 
-const weekDayList = new Map([
+var weekDayList = new Map([
   ['th0', '日'],
   ['th1', '月'],
   ['th2', '火'],
@@ -9,7 +9,7 @@ const weekDayList = new Map([
   ['th5', '金'],
   ['th6', '土']
 ]);
-let calendar;
+var calendar;
 
 window.onload = function () {
   createCalendar(location.hash);
@@ -19,10 +19,10 @@ function createCalendar(hashDate) {
   calendar = new Calendar(hashDate.slice(1));
   document.getElementById('current').innerText = calendar.getDisplayMonth();
   // ストレージ確認
-  let start = localStorage.getItem('start-week');
+  var start = localStorage.getItem('start-week');
   if (start !== null) {
-    let options = document.getElementById('start-week-selection').getElementsByTagName('option');
-    for (let i = 0; i < options.length; i++) {
+    var options = document.getElementById('start-week-selection').getElementsByTagName('option');
+    for (var i = 0; i < options.length; i++) {
       if (start == options[i].value) {
         options[i].selected = true;
       }
@@ -35,38 +35,38 @@ function createCalendar(hashDate) {
 
 // 開始曜日の設定
 function changeCalendar(obj) {
-  const start = obj.options[obj.selectedIndex].value;
+  var start = obj.options[obj.selectedIndex].value;
   localStorage.setItem('start-week', start);
   setupCalendar(Number(start));
 }
 
 // 一月分進める
 function nextMonth(calendar) {
-  const dateHash = calendar.getNext();
-  const url = location.href.split('#');
+  var dateHash = calendar.getNext();
+  var url = location.href.split('#');
   location.href = `${url[0]}#${dateHash}`;
   createCalendar(location.hash);
 }
 
 // 一月分戻す
 function prevMonth(calendar) {
-  const dateHash = calendar.getPrev();
-  const url = location.href.split('#');
+  var dateHash = calendar.getPrev();
+  var url = location.href.split('#');
   location.href = `${url[0]}#${dateHash}`;
   createCalendar(location.hash);
 }
 
 // 当月に戻る
 function backNowMonth() {
-  const url = location.href.split('#');
+  var url = location.href.split('#');
   location.href = url[0];
   createCalendar(location.hash);
 }
 
 function setupCalendar(leadWeekPosition) {
   // 開始曜日の設定
-  const thChildren = document.getElementById('week').children;
-  for (let thOrder = 0, position = leadWeekPosition; thOrder < thChildren.length; thOrder++, position++) {
+  var thChildren = document.getElementById('week').children;
+  for (var thOrder = 0, position = leadWeekPosition; thOrder < thChildren.length; thOrder++, position++) {
     thChildren[thOrder].innerText = weekDayList.get(`th${position}`);
     thChildren[thOrder].setAttribute(`th${position}`, `th${position}`);
   }
@@ -76,19 +76,22 @@ function setupCalendar(leadWeekPosition) {
   }
 
   // 月末月初の日付を取得
-  const curMonthFirst = new Date(calendar.getCurrentYear(), calendar.getCurrentMonth(), 1);
-  const curMonthLast = new Date(calendar.getCurrentYear(), calendar.getCurrentMonth() + 1, 0);
+  var curMonthFirst = new Date(calendar.getCurrentYear(), calendar.getCurrentMonth(), 1);
+  var curMonthLast = new Date(calendar.getCurrentYear(), calendar.getCurrentMonth() + 1, 0);
 
   // 前月分
-  const week1Children = document.getElementById(`week1`).children;
+  var week1Children = document.getElementById(`week1`).children;
   if (curMonthFirst.getDay() != leadWeekPosition) {
-    const prevMonthLast = new Date(calendar.getCurrentYear(), calendar.getCurrentMonth(), 0);
-    for (let day = prevMonthLast.getDate(), prevEndPos = prevMonthLast.getDay(); prevEndPos >= 0; prevEndPos--, day--) {
-      if (leadWeekPosition === 1 && day === prevMonthLast.getDate()) {
+    var prevMonthLast = new Date(calendar.getCurrentYear(), calendar.getCurrentMonth(), 0);
+    for (var prevMonthDay = prevMonthLast.getDate(), prevEndPos = prevMonthLast.getDay();
+         prevEndPos >= 0;
+         prevEndPos--, prevMonthDay--
+    ) {
+      if (leadWeekPosition === 1 && prevMonthDay === prevMonthLast.getDate()) {
         prevEndPos -= 1;
       }
       week1Children[prevEndPos].setAttribute('class', 'no-current-month');
-      week1Children[prevEndPos].innerText = day;
+      week1Children[prevEndPos].innerText = prevMonthDay;
     }
   }
 
@@ -99,13 +102,13 @@ function setupCalendar(leadWeekPosition) {
   }
   // 選択月
   // 折り返し曜日の設定
-  const lastWeekPosition = (leadWeekPosition === 1) ? 0 : 6;
-  let weekPos = 1;
-  for (let day = 1; day <= curMonthLast.getDate(); day++) {
+  var lastWeekPosition = (leadWeekPosition === 1) ? 0 : 6;
+  var weekPos = 1;
+  for (var day = 1; day <= curMonthLast.getDate(); day++) {
     document.getElementById(`week${weekPos}`).removeAttribute('style');
-    let oneDate = new Date(calendar.getCurrentYear(), calendar.getCurrentMonth(), day);
-    let children = document.getElementById(`week${weekPos}`).children;
-    let pos;
+    var oneDate = new Date(calendar.getCurrentYear(), calendar.getCurrentMonth(), day);
+    var children = document.getElementById(`week${weekPos}`).children;
+    var pos;
     if (leadWeekPosition === 1) {
       pos = (oneDate.getDay() === lastWeekPosition) ? children.length - 1 : oneDate.getDay() - 1;
     } else {
@@ -128,23 +131,26 @@ function setupCalendar(leadWeekPosition) {
     }
   }
   if (weekPos < 6) {
-    for (let i = weekPos + 1 ; i <= 6 ; i++) {
+    for (var i = weekPos + 1 ; i <= 6 ; i++) {
       document.getElementById(`week${i}`).setAttribute('style', 'display: none;');
     }
   }
   // 翌月分
-  const lastWeekChildren = document.getElementById(`week${weekPos}`).children;
+  var lastWeekChildren = document.getElementById(`week${weekPos}`).children;
   if (curMonthLast.getDay() != lastWeekPosition) {
-    const nextStartDate = new Date(calendar.getCurrentYear(), calendar.getCurrentMonth() + 1, 1);
-    for (let day = 1, nextWeekPos = nextStartDate.getDay(); nextWeekPos < lastWeekChildren.length; day++, nextWeekPos++) {
+    var nextStartDate = new Date(calendar.getCurrentYear(), calendar.getCurrentMonth() + 1, 1);
+    for (var nextMonthDay = 1, nextWeekPos = nextStartDate.getDay();
+         nextWeekPos < lastWeekChildren.length;
+         nextMonthDay++, nextWeekPos++
+    ) {
       if (leadWeekPosition === 1) {
         if (nextWeekPos === 0) {
           nextWeekPos = lastWeekChildren.length - 1;
-        } else if (day === nextStartDate.getDate()) {
+        } else if (nextMonthDay === nextStartDate.getDate()) {
           nextWeekPos -= 1;
         }
       }
-      lastWeekChildren[nextWeekPos].innerText = day;
+      lastWeekChildren[nextWeekPos].innerText = nextMonthDay;
       lastWeekChildren[nextWeekPos].setAttribute('class', 'no-current-month');
     }
   }
