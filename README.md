@@ -1,5 +1,19 @@
 # carendar_js
 
+## 構成について
+
+<pre>
+├── app：アプリケーション系
+│   │  
+│   ├── css
+│   │   └── calendar.css
+│   ├── index.html
+│   └── js
+│       ├── calendar.js
+│       └── calendar_class.js
+│  
+├── env ：環境構築系
+</pre>
 
 ## 動作確認済み環境
 
