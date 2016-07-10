@@ -1,10 +1,14 @@
-- name: epel install
-  yum: name=epel-release state=latest
-  tags: util
-
 - name: install util
   yum: name={{ item }} state=present
   with_items:
     - libselinux-python
     - git
+  tags: util
+
+- name: nginx yum repo setup
+  yum: name=http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm state=present
+  tags: util
+
+- name: yum repo add
+  copy: src=files/nginx.repo dest=/etc/yum.repos.d/nginx.repo
   tags: util
