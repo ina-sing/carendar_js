@@ -1,4 +1,4 @@
-# carendar_js
+# carendar js
 
 ## 構成について
 
